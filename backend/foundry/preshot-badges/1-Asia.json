@@ -1,0 +1,15 @@
+{
+  "name": "Assessed Badge - Asia",
+  "description": "Completed first Preshot assessment in Asia",
+  "image": "ipfs://bafybeif3lysqg62jhbwlu2cj7srz66mvimk427yboefxpleszem6jvmbgy/IpfsAsiaAssessed.jpg",
+  "attributes": [
+    {
+      "trait_type": "Badge Type",
+      "value": "Assessed"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Asia"
+    }
+  ]
+}

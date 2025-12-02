@@ -1,0 +1,15 @@
+{
+  "name": "Ready Badge - Asia",
+  "description": "Achieved 70+ readiness score in Asia",
+  "image": "ipfs://bafybeif3lysqg62jhbwlu2cj7srz66mvimk427yboefxpleszem6jvmbgy/IpfsAsiaReady.jpg",
+  "attributes": [
+    {
+      "trait_type": "Badge Type",
+      "value": "Ready"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Asia"
+    }
+  ]
+}

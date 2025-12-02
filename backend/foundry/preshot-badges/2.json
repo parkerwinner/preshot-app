@@ -1,0 +1,15 @@
+{
+  "name": "Ready Badge",
+  "description": "Achieved 70+ readiness score",
+  "image": "ipfs://ipfs/bafybeif3lysqg62jhbwlu2cj7srz66mvimk427yboefxpleszem6jvmbgy/IpfsReady.jpg",
+  "attributes": [
+    {
+      "trait_type": "Badge Type",
+      "value": "Ready"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Global"
+    }
+  ]
+}
