@@ -1,0 +1,15 @@
+{
+  "name": "Certified Badge",
+  "description": "Completed 3+ courses",
+  "image": "ipfs://bafybeif3lysqg62jhbwlu2cj7srz66mvimk427yboefxpleszem6jvmbgy/OnchainCertified.jpg",
+  "attributes": [
+    {
+      "trait_type": "Badge Type",
+      "value": "Certified"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Global"
+    }
+  ]
+}

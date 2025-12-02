@@ -1,0 +1,15 @@
+{
+  "name": "Certified Badge - Africa",
+  "description": "Completed 3+ courses in Africa",
+  "image": "ipfs://bafybeif3lysqg62jhbwlu2cj7srz66mvimk427yboefxpleszem6jvmbgy/IpfsAfricaCertified.jpg",
+  "attributes": [
+    {
+      "trait_type": "Badge Type",
+      "value": "Certified"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Africa"
+    }
+  ]
+}

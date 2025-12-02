@@ -1,0 +1,15 @@
+{
+  "name": "Assessed Badge",
+  "description": "Completed first Preshot assessment",
+  "image": "ipfs://bafybeif3lysqg62jhbwlu2cj7srz66mvimk427yboefxpleszem6jvmbgy/IpfsAssessed.jpg",
+  "attributes": [
+    {
+      "trait_type": "Badge Type",
+      "value": "Assessed"
+    },
+    {
+      "trait_type": "Region",
+      "value": "Global"
+    }
+  ]
+}
