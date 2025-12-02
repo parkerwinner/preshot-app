@@ -1,0 +1,15 @@
+# Development environment variables for Preshot MCP Server
+# Copy this file to .dev.vars and fill in your actual values
+
+# Anthropic API Key (for Claude AI)
+PRESHOT_ANTHROPIC_API_KEY=sk-ant-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# Pinata JWT Token (for IPFS uploads)
+PRESHOT_PINATA_JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.xxxxxxxxxxxxxxxxxxxxx
+
+# Optional: Alternative AI API key
+# PRESHOT_AI_API_KEY=your_alternative_ai_key_here
+
+# Optional: Pinata API credentials (if not using JWT)
+# PRESHOT_PINATA_API_KEY=your_pinata_api_key
+# PRESHOT_PINATA_SECRET=your_pinata_secret_key

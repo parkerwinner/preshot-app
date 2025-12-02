@@ -1,0 +1,18 @@
+name = "preshot-mcp-server"
+main = "src/index.ts"  # Replace with your actual entrypoint (e.g., src/index.js if JS); check your project files
+compatibility_date = "2025-11-23"
+compatibility_flags = ["nodejs_compat"]  # For ethers/chess.js Node deps
+
+# Service binding to the deployed 'mcp' Worker
+[[services]]
+binding = "MCP_SERVICE"
+service = "mcp"
+
+# Your other bindings
+[[durable_objects.bindings]]
+name = "EXAMPLE_MCP_SERVER"
+class_name = "ExampleMcpServer"
+
+[[kv_namespaces]]
+binding = "PRESHOT_KV"
+id = "f63d382b98e64e198856d74af5036d8f"
