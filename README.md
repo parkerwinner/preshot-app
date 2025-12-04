@@ -1,18 +1,18 @@
-# Preshot — CAMP Readiness Engine
+# Preshot — Readiness Engine
 
 ![Preshot Banner](https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=300&fit=crop)
 
-**Preshot** is Africa's first AI-powered platform designed to help users prepare for fellowships, scholarships, talent programs, interview and accelerators. Built as part of the CAMP Network, Preshot provides comprehensive diagnostic assessments, program matching, AI-powered coaching, and mindset development resources.
+**Preshot** is a Talent first AI powered platform designed to help users prepare for fellowships, scholarships, talent programs, interview and accelerators. Built with Nullshot MCP, Preshot provides comprehensive diagnostic assessments, program matching, AI powered coaching, and mindset development resources.
 
 ## 🌟 Overview
 
-Preshot addresses the challenge of African leaders and students navigating the complex landscape of global opportunities. The platform combines artificial intelligence, curated program intelligence, and community mentorship to provide personalized guidance and preparation support.
+Preshot addresses the challenge of Talents and students navigating the complex landscape of global opportunities. The platform combines artificial intelligence, curated program intelligence, and community mentorship to provide personalized guidance and preparation support.
 
 ### Key Features
 
 - **🎯 Diagnostic Assessment Engine**: Evaluate readiness levels, identify strengths and weaknesses
-- **🎓 Program Intelligence Library**: Curated database of fellowships, scholarships, and accelerators
-- **🤖 AI Application Coach**: Real-time feedback on essays, statements, and application materials
+- **🎓 Program Intelligence Library**: Curated database of fellowships, scholarships, Job Interviews, and accelerators
+- **🤖 AI Application Coach**: Real time feedback on essays, statements, and application materials
 - **📚 Mindset Micro-Courses**: Interactive lessons on leadership, systems thinking, and global citizenship
 - **👥 Mentor Network**: Connect with experienced fellows and program alumni
 - **📊 Analytics & Progress Tracking**: Monitor readiness metrics and improvement over time
@@ -21,9 +21,10 @@ Preshot addresses the challenge of African leaders and students navigating the c
 
 ### Prerequisites
 
-- Node.js 16+ and npm
-- Supabase account (for backend features)
-- OpenAI or HuggingFace API key (for AI coaching features)
+- Node.js 18+ and npm
+- Supabase account (for database and courses)
+- Thirdweb account (for Web3 wallet authentication)
+- NullShot MCP server (for AI-powered coaching)
 
 ### Installation
 
@@ -33,17 +34,19 @@ Preshot addresses the challenge of African leaders and students navigating the c
    cd preshot-app
    ```
 
-2. **Install dependencies**
+2. **Install frontend dependencies**
    ```bash
+   cd frontend
    npm install
    ```
 
 3. **Set up environment variables**
    
-   Create a `.env` file in the root directory:
+   Create a `.env` file in the `frontend` directory:
    ```env
    VITE_SUPABASE_URL=your_supabase_url_here
    VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+   VITE_THIRDWEB_CLIENT_ID=your_thirdweb_client_id_here
    ```
 
 4. **Start the development server**
@@ -53,48 +56,62 @@ Preshot addresses the challenge of African leaders and students navigating the c
 
 5. **Open your browser**
    
-   Navigate to `http://localhost:8080`
+   Navigate to `http://localhost:8081` (or the port shown in terminal)
 
 ## 🏗️ Project Structure
 
 ```
 preshot-app/
-├── src/
-│   ├── components/
-│   │   ├── layouts/
-│   │   │   └── DashboardLayout.tsx
-│   │   ├── ProtectedRoute.tsx
-│   │   └── ui/                    # shadcn UI components
-│   ├── contexts/
-│   │   └── AuthContext.tsx        # Authentication context
-│   ├── lib/
-│   │   ├── supabase.ts           # Supabase client
-│   │   └── utils.ts              # Utility functions
-│   ├── pages/
-│   │   ├── auth/
-│   │   │   ├── Login.tsx
-│   │   │   └── Signup.tsx
-│   │   ├── Dashboard.tsx
-│   │   ├── Assessment.tsx
-│   │   ├── AssessmentResults.tsx
-│   │   ├── Programs.tsx
-│   │   ├── Coach.tsx
-│   │   ├── Courses.tsx
-│   │   ├── Mentors.tsx
-│   │   ├── Analytics.tsx
-│   │   └── Index.tsx
-│   ├── services/
-│   │   └── api.ts                # API integration layer
-│   ├── App.tsx                   # Main app component
-│   ├── index.css                 # Global styles
-│   └── main.tsx                  # Entry point
-├── public/
-├── .env                          # Environment variables (create this)
-├── index.html
-├── package.json
-├── tailwind.config.ts
-├── tsconfig.json
-└── vite.config.ts
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── layouts/
+│   │   │   │   └── DashboardLayout.tsx
+│   │   │   ├── wallet/
+│   │   │   │   └── ConnectWallet.tsx    # Thirdweb wallet connection
+│   │   │   ├── navigation.tsx            # Main navigation component
+│   │   │   ├── Footer.tsx
+│   │   │   └── ui/                       # shadcn UI components
+│   │   ├── config/
+│   │   │   └── admins.ts                 # Admin wallet addresses
+│   │   ├── lib/
+│   │   │   ├── supabase.ts              # Supabase client
+│   │   │   ├── mcpClient.ts             # NullShot MCP client
+│   │   │   └── utils.ts                 # Utility functions
+│   │   ├── pages/
+│   │   │   ├── Dashboard.tsx
+│   │   │   ├── Assessment.tsx
+│   │   │   ├── AssessmentResults.tsx
+│   │   │   ├── Programs.tsx
+│   │   │   ├── Coach.tsx
+│   │   │   ├── Courses.tsx
+│   │   │   ├── InterviewPrep.tsx        # Interview preparation
+│   │   │   ├── Mentors.tsx
+│   │   │   ├── MentorsAdmin.tsx         # Admin mentor management
+│   │   │   ├── Analytics.tsx
+│   │   │   ├── Profile.tsx
+│   │   │   └── Index.tsx                # Landing page
+│   │   ├── providers/
+│   │   │   └── ThirdwebProvider.tsx     # Thirdweb configuration
+│   │   ├── services/
+│   │   │   ├── courses.ts               # Supabase course services
+│   │   │   └── mentors.ts               # Mentor management
+│   │   ├── App.tsx
+│   │   ├── index.css
+│   │   └── main.tsx
+│   ├── .env                              # Environment variables
+│   ├── package.json
+│   ├── tailwind.config.ts
+│   └── vite.config.ts
+├── agent/
+│   └── preshot-mcp-server/              # NullShot MCP Server
+│       ├── src/
+│       │   ├── server.ts                # MCP server implementation
+│       │   └── programs/                # Program library
+│       └── package.json
+├── database/
+│   └── fix_courses_table.sql            # Supabase schema
+└── README.md
 ```
 
 ## 🔧 Configuration
@@ -103,57 +120,72 @@ preshot-app/
 
 1. **Create a Supabase project** at [supabase.com](https://supabase.com)
 
-2. **Set up authentication**
-   - Enable Email/Password authentication
-   - Configure redirect URLs in Authentication > URL Configuration
-   - Add your app URL (both localhost and production)
-
-3. **Create database tables** (optional, for storing user data)
+2. **Create preshotcourses tables** (optional, for storing user data)
    ```sql
-   -- Example: User profiles table
-   create table profiles (
-     id uuid references auth.users primary key,
-     full_name text,
-     goals text,
-     background text,
-     readiness_score integer,
-     created_at timestamp with time zone default now()
-   );
+   -- Example: User courses table
+   CREATE TABLE IF NOT EXISTS preshotcourses (
+  id TEXT PRIMARY KEY,  -- Use text ID like 'global-leadership-foundations'
+  title TEXT NOT NULL,
+  description TEXT NOT NULL,
+  category TEXT NOT NULL,  -- 'leadership', 'systems-thinking', etc.
+  icon TEXT DEFAULT 'BookOpen',  -- Lucide icon name
+  color TEXT DEFAULT 'blue',  -- Tailwind color name
+  duration_minutes INTEGER DEFAULT 30,
+  order_index INTEGER DEFAULT 0,
+  is_locked BOOLEAN DEFAULT false,
+  is_demo BOOLEAN DEFAULT false,  -- Flag for demo courses with bypass
+  content JSONB,  -- Detailed lesson content
+  requirements TEXT[],  -- Prerequisites
+  learning_objectives TEXT[],
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
    ```
 
 4. **Update environment variables**
    - Copy your Supabase URL and anon key to `.env`
 
-### Backend API Integration
+### Thirdweb Configuration
 
-The app includes placeholder API functions in `src/services/api.ts` for:
-- Diagnostic assessment processing (`/api/diagnose`)
-- AI coaching feedback (`/api/coach`)
-- Program matching (`/api/programs`)
-- CAMP Network integration (`/api/camp/*`)
+1. **Create a Thirdweb account** at [thirdweb.com](https://thirdweb.com)
+2. **Create a new project** in the Thirdweb dashboard
+3. **Get your Client ID** from the project settings
+4. **Add to environment variables**:
+   ```env
+   VITE_THIRDWEB_CLIENT_ID=your_client_id_here
+   ```
 
-**To implement the backend:**
+### NullShot MCP Server
 
-1. Set up a Node.js/Express server or use serverless functions
-2. Connect to OpenAI or HuggingFace for AI features
-3. Implement the API endpoints matching the service layer
-4. Update the API base URL in the service functions
+The MCP (Model Context Protocol) server provides AI-powered coaching and program intelligence:
 
-### CAMP Network SSO Integration
+1. **Navigate to the MCP server directory**
+   ```bash
+   cd agent/preshot-mcp-server
+   npm install
+   ```
 
-For CAMP Network SSO integration:
-1. Contact CAMP Network for API credentials
-2. Implement OAuth flow or API-based authentication
-3. Update authentication logic in `AuthContext.tsx`
-4. Add user sync functionality in `services/api.ts`
+2. **Configure the server** with your program library and AI credentials
+
+3. **Start the MCP server**
+   ```bash
+   npm start
+   ```
+
+The MCP server provides:
+- AI-powered coaching feedback
+- Program matching intelligence
+- Interview preparation guidance
+- Personalized learning recommendations
 
 ## 📱 Features & User Flow
 
 ### 1. Authentication
-- Email/password signup and login
-- Password reset functionality
-- Session management with Supabase Auth
-- Ready for CAMP Network SSO integration
+- **Web3 Wallet Connection** via Thirdweb
+- Support for multiple wallet providers (MetaMask, Coinbase Wallet, WalletConnect, etc.)
+- Automatic redirect to dashboard upon connection
+- Admin/user role-based routing
+- Secure wallet-based authentication on Base network
 
 ### 2. Diagnostic Assessment
 - Multi-step form collecting:
@@ -237,16 +269,6 @@ The app uses a custom design system built with Tailwind CSS:
 
 3. **Set environment variables** in Netlify dashboard
 
-### Production Checklist
-- [ ] Configure Supabase production URL and keys
-- [ ] Set up backend API endpoints
-- [ ] Enable Supabase Row Level Security (RLS)
-- [ ] Configure custom domain
-- [ ] Set up error monitoring (e.g., Sentry)
-- [ ] Enable analytics (optional)
-- [ ] Test authentication flow end-to-end
-- [ ] Verify all API integrations
-
 ## 🔐 Security Notes
 
 - Never commit `.env` files to version control
@@ -262,10 +284,11 @@ The app uses a custom design system built with Tailwind CSS:
 - **Styling**: Tailwind CSS + shadcn/ui
 - **Routing**: React Router v6
 - **State Management**: React Context API + React Query
-- **Authentication**: Supabase Auth
-- **Database**: Supabase PostgreSQL (backend)
-- **AI Integration**: OpenAI/HuggingFace (backend)
+- **Web3 Authentication**: Thirdweb SDK (Base network)
+- **Database**: Supabase PostgreSQL
+- **AI Integration**: NullShot MCP (Model Context Protocol)
 - **Build Tool**: Vite
+- **Blockchain**: Base (Layer 2 on Ethereum)
 
 ## 🤝 Contributing
 
@@ -300,15 +323,15 @@ Contributions are welcome! Please follow these steps:
 7. Add email notifications for deadlines and updates
 
 ### Known Issues
-- Backend API endpoints are placeholders and need implementation
-- AI coaching features require external API integration
-- Some pages are placeholder implementations (marked "Coming Soon")
+- Some advanced AI features require MCP server configuration
+- Course content needs to be populated in Supabase
+- Interview prep features are in development
 
 ## 📞 Support
 
 For questions or support:
-- **Email**: support@preshot.app
-- **CAMP Network**: [camp-network.org](https://camp-network.org)
+- **Email**: hi@xavalabs.com
+- **Discord**: Join Preshot Network community
 
 ## 📄 License
 
@@ -316,10 +339,11 @@ This project is proprietary and confidential. All rights reserved.
 
 ## 🙏 Acknowledgments
 
-- Built for the CAMP Network community
-- Powered by modern web technologies
-- Inspired by the need to democratize access to global opportunities for African leaders
+- Built with **NullShot MCP** for AI-powered intelligence
+- Powered by **Thirdweb** for Web3 authentication
+- Styled with **Tailwind CSS** and **shadcn/ui**
+- Inspired by the need to democratize access to global opportunities for talented innovators worldwide
 
 ---
 
-**Built with ❤️ for Africa's next generation of leaders**
+**Built with NULLSHOT MCP for global talents and innovators**

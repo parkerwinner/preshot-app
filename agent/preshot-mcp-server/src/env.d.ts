@@ -5,4 +5,5 @@ export interface Env {
 	PRESHOT_PINATA_JWT?: string;
 	PRESHOT_PINATA_API_KEY?: string;
 	PRESHOT_PINATA_SECRET?: string;
+	TAVILY_API_KEY?: string;
 }
