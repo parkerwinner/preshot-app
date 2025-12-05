@@ -411,9 +411,28 @@ export class PreshotAgentServer extends McpHonoServerDO<Env> {
 				const result = await this.submitToBlockchain(
 					userAddress,
 					ipfsUrl,
-					assessmentData.readinessScore || 0,
+					assessmentData.readinessScore || 100, // Default to 100 for course completion
+					assessmentData.region || 0, // Include region in submission
 					signature
 				);
+
+				// If AI wallet out of gas, provide manual submission details
+				if (!result.success && result.message.includes('out of gas')) {
+					return new Response(JSON.stringify({
+						...result,
+						manualSubmit: true,
+						ipfsUrl,
+						contractAddress: '0xEF18625F583F2362390A8edd637f707f62358669',
+						readinessScore: assessmentData.readinessScore || 100,
+						region: assessmentData.region || 0,
+						instruction: 'Use your wallet to call submitData() directly on the contract',
+					}), {
+						headers: {
+							'Content-Type': 'application/json',
+							'Access-Control-Allow-Origin': '*',
+						},
+					});
+				}
 
 				return new Response(JSON.stringify(result), {
 					headers: {
@@ -1507,6 +1526,7 @@ export class PreshotAgentServer extends McpHonoServerDO<Env> {
 		userAddress: string,
 		ipfsUrl: string,
 		readinessScore: number,
+		region: number,
 		userSignature: string
 	): Promise<{ success: boolean; message: string; txHash?: string; ipfsUrl?: string }> {
 		try {
@@ -1514,6 +1534,7 @@ export class PreshotAgentServer extends McpHonoServerDO<Env> {
 			console.log('  User:', userAddress);
 			console.log('  IPFS:', ipfsUrl);
 			console.log('  Score:', readinessScore);
+			console.log('  Region:', region);
 
 			const { ethers } = await import('ethers');
 			const kv = (this.env as any).PRESHOT_KV;
@@ -1531,37 +1552,32 @@ export class PreshotAgentServer extends McpHonoServerDO<Env> {
 			}
 
 			const provider = new ethers.JsonRpcProvider('https://sepolia.base.org');
-			const aiWallet = new ethers.Wallet(privateKey, provider);
+		const aiWallet = new ethers.Wallet(privateKey, provider);
 
-			console.log('[Blockchain] AI Wallet:', aiWallet.address);
+		console.log('[Blockchain] ✅ AI Wallet Address:', aiWallet.address);
+		console.log('[Blockchain] 🔍 Expected Address: 0x061595bdf25dec1f668844db7d0874fa724c46b6');
 
-			const balance = await provider.getBalance(aiWallet.address);
-			const balanceInEth = ethers.formatEther(balance);
-			console.log('[Blockchain] Balance:', balanceInEth, 'ETH');
+		const balance = await provider.getBalance(aiWallet.address);
+		const balanceInEth = ethers.formatEther(balance);
+		console.log('[Blockchain] 💰 Balance:', balanceInEth, 'ETH');
 
-			if (balance < ethers.parseEther('0.0001')) {
-				return {
-					success: false,
-					message: `AI wallet low on gas (${balanceInEth} ETH). Please submit manually or fund wallet.`,
-				};
-			}
+		// Removed 0.0001 ETH validation - user confirmed wallet has sufficient gas
+		// The wallet has 0.07 ETH which is plenty for transactions
 
-			const contractAddress = '0xEF18625F583F2362390A8edD637f707f62358669';
-			const contractABI = [
-				'function submitWithSignature(address user, string memory ipfsUrl, uint256 readinessScore, uint256 region, bytes memory signature) external',
-			];
+		const contractAddress = '0xEF18625F583F2362390A8edD637f707f62358669';
+		const contractABI = [
+			'function submitWithSignature(address user, string memory ipfsUrl, uint256 readinessScore, uint256 region, bytes memory signature) external',
+		];
 
-			const contract = new ethers.Contract(contractAddress, contractABI, aiWallet);
+		const contract = new ethers.Contract(contractAddress, contractABI, aiWallet);
 
-			console.log('[Blockchain] Submitting transaction...');
-
-			const region = 0; // 0 = Global
+		console.log('[Blockchain] 📝 Submitting transaction...');
 
 			const tx = await contract.submitWithSignature(
 				userAddress,
 				ipfsUrl,
 				readinessScore,
-				region,
+				region, // Use the region parameter from the request
 				userSignature,
 				{
 					gasLimit: 500000,
@@ -1592,6 +1608,7 @@ export class PreshotAgentServer extends McpHonoServerDO<Env> {
 				return {
 					success: false,
 					message: 'AI wallet out of gas. Please submit manually or contact support.',
+					ipfsUrl: ipfsUrl, // Include IPFS URL for manual submission
 				};
 			}
 

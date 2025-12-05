@@ -29,15 +29,12 @@ export default function Profile() {
     );
   }
 
-
   return (
     <DashboardLayout>
       <div className="space-y-8 max-w-3xl mx-auto top-40 relative pb-12">
         <div className="text-black">
           <h1 className="text-3xl font-bold">Profile</h1>
-          <p className="text-black  mt-2">
-            Your Web3 wallet information
-          </p>
+          <p className="text-black  mt-2">Your Web3 wallet information</p>
         </div>
 
         <Card>
@@ -46,9 +43,7 @@ export default function Profile() {
               <User className="h-5 w-5" />
               Wallet Information
             </CardTitle>
-            <CardDescription>
-              Your connected wallet details
-            </CardDescription>
+            <CardDescription>Your connected wallet details</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
@@ -64,9 +59,7 @@ export default function Profile() {
               <p className="text-sm font-medium text-muted-foreground">
                 Network
               </p>
-              <p className="text-lg">
-                Camp Network Testnet
-              </p>
+              <p className="text-lg">Base Network, SDK: Thirdweb</p>
             </div>
 
             <div className="pt-4">
@@ -86,7 +79,8 @@ export default function Profile() {
                   Web3 Profile Coming Soon
                 </h3>
                 <p className="text-sm text-blue-700">
-                  In the future, you'll be able to store your profile data on-chain or via IPFS for a truly decentralized experience.
+                  In the future, you'll be able to store your profile data
+                  on-chain or via IPFS for a truly decentralized experience.
                 </p>
               </div>
             </div>

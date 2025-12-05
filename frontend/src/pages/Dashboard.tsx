@@ -1,9 +1,9 @@
-import { useActiveAccount } from 'thirdweb/react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
-import { Link, useNavigate } from 'react-router-dom';
+import { useActiveAccount } from "thirdweb/react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Badge } from "@/components/ui/badge";
+import { Link, useNavigate } from "react-router-dom";
 import {
   TrendingUp,
   Target,
@@ -14,92 +14,89 @@ import {
   BarChart3,
   Trophy,
   Briefcase,
-} from 'lucide-react';
-import DashboardLayout from '@/components/layouts/DashboardLayout';
-import { isAdmin } from '@/config/admins';
+} from "lucide-react";
+import DashboardLayout from "@/components/layouts/DashboardLayout";
+import { isAdmin } from "@/config/admins";
+import { useDashboardStats } from "@/hooks/useDashboardStats";
 
 export default function Dashboard() {
   const account = useActiveAccount();
   const navigate = useNavigate();
   const userAddress = account?.address;
-  const userName = userAddress ? `${userAddress.slice(0, 6)}...${userAddress.slice(-4)}` : 'there';
+  const userName = userAddress
+    ? `${userAddress.slice(0, 6)}...${userAddress.slice(-4)}`
+    : "there";
 
   // Admin users should see admin dashboard instead
   const userIsAdmin = isAdmin(userAddress);
   if (userIsAdmin) {
-    navigate('/mentors-admin');
+    navigate("/mentors-admin");
     return null;
   }
 
-  // TODO: Fetch real data from blockchain & MCP
-  // For now showing placeholder while transitions happen
-  const stats = {
-    readinessScore: 0,
-    completedAssessments: 0,
-    coursesCompleted: 0,
-    badges: 0,
-  };
+  // Fetch real stats from Supabase based on wallet address
+  const { stats, loading: statsLoading } = useDashboardStats(userAddress);
 
   const quickActions = [
     {
-      title: 'Run Diagnostic',
-      description: 'Assess your readiness and get personalized insights',
+      title: "Run Diagnostic",
+      description: "Assess your readiness and get personalized insights",
       icon: Target,
-      iconBg: 'bg-blue-500/10',
-      iconColor: 'text-blue-600',
-      badge: 'Start Here',
-      badgeColor: 'bg-green-500/10 text-green-600 border-green-500/20',
-      route: '/assessment',
+      iconBg: "bg-blue-500/10",
+      iconColor: "text-blue-600",
+      badge: "Start Here",
+      badgeColor: "bg-green-500/10 text-green-600 border-green-500/20",
+      route: "/assessment",
     },
     {
-      title: 'Interview Prep',
-      description: 'AI-powered coaching for your next interview',
+      title: "Interview Prep",
+      description: "AI-powered coaching for your next interview",
       icon: Briefcase,
-      iconBg: 'bg-purple-500/10',
-      iconColor: 'text-purple-600',
-      badge: 'AI Powered',
-      badgeColor: 'bg-purple-500/10 text-purple-600 border-purple-500/20',
-      route: '/interview-prep',
+      iconBg: "bg-purple-500/10",
+      iconColor: "text-purple-600",
+      badge: "AI Powered",
+      badgeColor: "bg-purple-500/10 text-purple-600 border-purple-500/20",
+      route: "/interview-prep",
     },
     {
-      title: 'Match Programs',
-      description: 'Discover opportunities that fit your profile',
+      title: "Match Programs",
+      description: "Discover opportunities that fit your profile",
       icon: Trophy,
-      iconBg: 'bg-amber-500/10',
-      iconColor: 'text-amber-600',
-      badge: 'Recommended',
-      badgeColor: 'bg-amber-500/10 text-amber-600 border-amber-500/20',
-      route: '/programs',
+      iconBg: "bg-amber-500/10",
+      iconColor: "text-amber-600",
+      badge: "Recommended",
+      badgeColor: "bg-amber-500/10 text-amber-600 border-amber-500/20",
+      route: "/programs",
     },
     {
-      title: 'Mindset Courses',
-      description: 'Build leadership skills with AI-generated lessons',
+      title: "Mindset Courses",
+      description: "Build leadership skills with AI-generated lessons",
       icon: Brain,
-      iconBg: 'bg-indigo-500/10',
-      iconColor: 'text-indigo-600',
-      badge: 'Interactive',
-      badgeColor: 'bg-indigo-500/10 text-indigo-600 border-indigo-500/20',
-      route: '/courses',
+      iconBg: "bg-indigo-500/10",
+      iconColor: "text-indigo-600",
+      badge: "Interactive",
+      badgeColor: "bg-indigo-500/10 text-indigo-600 border-indigo-500/20",
+      route: "/courses",
     },
     {
-      title: 'Application Coach',
-      description: 'Get real-time feedback on your essays',
+      title: "Application Coach",
+      description: "Get real-time feedback on your essays",
       icon: Sparkles,
-      iconBg: 'bg-rose-500/10',
-      iconColor: 'text-rose-600',
-      badge: 'AI Coach',
-      badgeColor: 'bg-rose-500/10 text-rose-600 border-rose-500/20',
-      route: '/coach',
+      iconBg: "bg-rose-500/10",
+      iconColor: "text-rose-600",
+      badge: "AI Coach",
+      badgeColor: "bg-rose-500/10 text-rose-600 border-rose-500/20",
+      route: "/coach",
     },
     {
-      title: 'Progress Analytics',
-      description: 'Track your journey and achievements',
+      title: "Progress Analytics",
+      description: "Track your journey and achievements",
       icon: BarChart3,
-      iconBg: 'bg-emerald-500/10',
-      iconColor: 'text-emerald-600',
-      badge: 'Insights',
-      badgeColor: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
-      route: '/analytics',
+      iconBg: "bg-emerald-500/10",
+      iconColor: "text-emerald-600",
+      badge: "Insights",
+      badgeColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
+      route: "/analytics",
     },
   ];
 
@@ -108,9 +105,10 @@ export default function Dashboard() {
       <div className="space-y-8 mt-32">
         {/* Welcome Section */}
         <div className="text-black">
-          <h1 className="text-3xl font-bold">Welcome Back, {userName}! 👋</h1>
+          <h1 className="text-3xl font-bold">Welcome, {userName}! 👋</h1>
           <p className="text-muted-foreground mt-2">
-           Ready to take your career to the next level? Start with an assessment.
+            Ready to take your career to the next level? Start with an
+            assessment.
           </p>
         </div>
 
@@ -125,12 +123,12 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {stats.readinessScore > 0 ? stats.readinessScore : '--'}/100
+                {stats.readinessScore > 0 ? stats.readinessScore : "--"}/100
               </div>
               <p className="text-xs text-muted-foreground">
                 {stats.readinessScore === 0
-                  ? 'Complete an assessment'
-                  : 'Keep improving'}
+                  ? "Complete an assessment"
+                  : "Keep improving"}
               </p>
             </CardContent>
           </Card>
@@ -161,7 +159,9 @@ export default function Dashboard() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Badges Earned</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                Badges Earned
+              </CardTitle>
               <Trophy className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -173,7 +173,9 @@ export default function Dashboard() {
 
         {/* Quick Actions */}
         <div>
-          <h2 className="text-xl text-black font-semibold mb-7">Quick Actions</h2>
+          <h2 className="text-xl text-black font-semibold mb-7">
+            Quick Actions
+          </h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {quickActions.map((action, idx) => (
               <Card
@@ -217,7 +219,9 @@ export default function Dashboard() {
                     1
                   </div>
                   <div className="flex-1">
-                    <p className="font-medium">Complete Your First Assessment</p>
+                    <p className="font-medium">
+                      Complete Your First Assessment
+                    </p>
                     <p className="text-sm text-muted-foreground">
                       Discover your readiness level and get personalized
                       recommendations
@@ -269,8 +273,8 @@ export default function Dashboard() {
                   Connect with Mentors
                 </h2>
                 <p className="text-muted-foreground mb-4">
-                  Get guidance from experienced professionals who have walked the
-                  path you're on. Our mentors are ready to help you succeed.
+                  Get guidance from experienced professionals who have walked
+                  the path you're on. Our mentors are ready to help you succeed.
                 </p>
                 <Button variant="default" asChild>
                   <Link to="/mentors">

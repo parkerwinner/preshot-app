@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useActiveAccount, useDisconnect } from 'thirdweb/react';
+import { useActiveAccount, useDisconnect, useActiveWallet } from 'thirdweb/react';
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -41,13 +41,16 @@ const navItems = [
 
 function DashboardLayout({ children }: DashboardLayoutProps) {
   const account = useActiveAccount();
+  const wallet = useActiveWallet();
   const { disconnect } = useDisconnect();
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleSignOut = async () => {
-    disconnect();
+    if (wallet) {
+      disconnect(wallet);
+    }
     // Small delay to ensure disconnect completes before navigation
     await new Promise(resolve => setTimeout(resolve, 100));
     navigate("/");

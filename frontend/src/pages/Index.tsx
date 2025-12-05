@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import Navigation from '@/components/navigation';
+} from "@/components/ui/card";
+import Navigation from "@/components/navigation";
 import {
   GraduationCap,
   Target,
@@ -33,13 +33,13 @@ import {
   Search,
   ChartColumn,
   ArrowLeft,
-} from 'lucide-react';
-import Footer from '@/components/Footer';
-import { useState } from 'react';
-import { ConnectWallet } from '@/components/wallet/ConnectWallet';
-import { useActiveAccount } from 'thirdweb/react';
-import HeroSection from '@/components/sections/HeroSection';
-import FeaturesSection from '@/components/sections/FeaturesSection';
+} from "lucide-react";
+import Footer from "@/components/Footer";
+import { useState } from "react";
+import { ConnectWallet } from "@/components/wallet/ConnectWallet";
+import { useActiveAccount } from "thirdweb/react";
+import HeroSection from "@/components/sections/HeroSection";
+import FeaturesSection from "@/components/sections/FeaturesSection";
 
 const Index = () => {
   const account = useActiveAccount();
@@ -49,76 +49,76 @@ const Index = () => {
   const features = [
     {
       icon: Target,
-      title: 'Diagnostic Assessment',
+      title: "Diagnostic Assessment",
       description:
-        'AI-powered evaluation of your readiness for global opportunities',
+        "AI-powered evaluation of your readiness for global opportunities",
     },
     {
       icon: GraduationCap,
-      title: 'Program Intelligence',
+      title: "Program Intelligence",
       description:
-        'Curated database of fellowships, scholarships, and accelerators',
+        "Curated database of fellowships, scholarships, and accelerators",
     },
     {
       icon: Brain,
-      title: 'AI Application Coach',
+      title: "AI Application Coach",
       description:
-        'Real-time feedback on essays, statements, and application materials',
+        "Real-time feedback on essays, statements, and application materials",
     },
     {
       icon: Briefcase,
-      title: 'Interview Preparation',
+      title: "Interview Preparation",
       description:
-        'AI-powered coaching for behavioral, technical, and panel interviews',
+        "AI-powered coaching for behavioral, technical, and panel interviews",
     },
     {
       icon: BookOpen,
-      title: 'Mindset Micro-Courses',
-      description: 'Interactive lessons on leadership and global citizenship',
+      title: "Mindset Micro-Courses",
+      description: "Interactive lessons on leadership and global citizenship",
     },
     {
       icon: Users,
-      title: 'Mentor Network',
-      description: 'Connect with experienced fellows and program alumni',
+      title: "Mentor Network",
+      description: "Connect with experienced fellows and program alumni",
     },
     {
       icon: TrendingUp,
-      title: 'Progress Analytics',
-      description: 'Track your readiness journey with detailed insights',
+      title: "Progress Analytics",
+      description: "Track your readiness journey with detailed insights",
     },
   ];
 
   const testimonials = [
     {
-      name: 'Amaka Okafor',
-      role: 'Social Entrepreneur',
+      name: "Amaka Okafor",
+      role: "Social Entrepreneur",
       message:
         "Preshot helped me articulate my impact story in a way that resonated with the YALI selection committee. Now I'm part of their 2026 cohort!",
     },
     {
-      name: 'Emmanuel Kwame',
-      role: 'Policy Analyst',
+      name: "Emmanuel Kwame",
+      role: "Policy Analyst",
       message:
-        'The diagnostic assessment pinpointed where I needed to improve. After the recommended modules, I secured Chevening funding.',
+        "The diagnostic assessment pinpointed where I needed to improve. After the recommended modules, I secured Chevening funding.",
     },
     {
-      name: 'Sarah Chen',
-      role: 'Tech Entrepreneur',
+      name: "Sarah Chen",
+      role: "Tech Entrepreneur",
       message:
-        'The interview prep module was invaluable. I felt confident and secured my dream role at a global tech company.',
+        "The interview prep module was invaluable. I felt confident and secured my dream role at a global tech company.",
     },
     {
-      name: 'David Mensah',
-      role: 'Research Scholar',
+      name: "David Mensah",
+      role: "Research Scholar",
       message:
         "The program matching feature connected me with opportunities I didn't even know existed. Now I'm pursuing my PhD at Oxford.",
     },
   ];
 
   const stats = [
-    { value: '1,000+', label: 'Global professionals supported' },
-    { value: '500+', label: 'Successful applications' },
-    { value: '90%', label: 'Success rate for prepared applicants' },
+    { value: "1,000+", label: "Global professionals supported" },
+    { value: "500+", label: "Successful applications" },
+    { value: "90%", label: "Success rate for prepared applicants" },
   ];
 
   return (
@@ -152,9 +152,8 @@ const Index = () => {
                 The Problem
               </CardTitle>
               <CardDescription className="py-5 text-base">
-                Global Talents struggle with opportunity readiness,
-                articulating impact, understanding criteria, and mindset
-                alignment
+                Global Talents struggle with opportunity readiness, articulating
+                impact, understanding criteria, and mindset alignment
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -516,7 +515,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center gap-5 py-5">
             <div>
               <div className="text-white font-semibold text-xl text-center">
-                50%
+                70%
               </div>
               <div className="text-center ">Boost in application readiness</div>
             </div>
@@ -528,7 +527,7 @@ const Index = () => {
             </div>
             <div>
               <div className="text-white font-semibold text-xl text-center">
-                90%
+                95%
               </div>
               <div className="text-center ">
                 Success rated for prepared applicants
@@ -536,7 +535,7 @@ const Index = () => {
             </div>
           </div>
         </div>
-        
+
         {/* our partners */}
         <div className="z-20 relative bg-transparent">
           <div className="font-bold text-2xl text-center">Project Tools</div>
@@ -558,8 +557,8 @@ const Index = () => {
             Ready to Unlock <br className="md:hidden" /> Global Opportunities
           </div>
           <p className="py-5">
-            Join thousands of Talents who are accelerating their
-            careers and making global impact with Preshot.
+            Join thousands of Talents who are accelerating their careers and
+            making global impact with Preshot.
           </p>
           <div className="flex items-center justify-center gap-4 md:gap-7 mt-5">
             <Link
