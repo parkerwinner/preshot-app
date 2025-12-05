@@ -1,8 +1,6 @@
 # Preshot - Your Gateway to Global Opportunities
 
-![Preshot](https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=300&fit=crop)
-
-**Preshot** is an AI-powered platform designed to help professionals worldwide prepare for fellowships, scholarships, job interviews, and career opportunities. The platform combines blockchain-verified credentials, AI coaching, and comprehensive preparation tools to transform your potential into success.
+**Preshot** is an AI powered platform designed to help professionals worldwide prepare for fellowships, scholarships, job interviews, and career opportunities. The platform combines blockchain-verified credentials, AI coaching, and comprehensive preparation tools to transform your potential into success.
 
 ## 🌟 Overview
 
@@ -121,15 +119,6 @@ Deployed on Base Sepolia:
 - **PreshotBadges**: Soul-bound NFT achievement badges
 - **PreshotCredentials**: On-chain credential verification
 
-### Admin Configuration
-
-Add admin wallet addresses in `src/config/admins.ts`:
-
-```typescript
-export const ADMIN_ADDRESSES = [
-  '0xe099fa204938657fd6f81671d1f7d14ec669b24d',
-  // Add more admin addresses here
-];
 ```
 
 ## 📱 Features & User Flow

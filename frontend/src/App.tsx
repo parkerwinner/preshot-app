@@ -16,6 +16,7 @@ import AssessmentResults from './pages/AssessmentResults';
 import Programs from './pages/Programs';
 import Coach from './pages/Coach';
 import Courses from './pages/Courses';
+import CourseDetail from './pages/CourseDetail';
 import Mentors from './pages/Mentors';
 import MentorsAdmin from './pages/MentorsAdmin';
 import Analytics from './pages/Analytics';
@@ -26,6 +27,7 @@ import NotFound from './pages/NotFound';
 import Tracker from './pages/Tracker';
 import Profile from './pages/Profile';
 import InterviewPrep from './pages/InterviewPrep';
+import Certificates from './pages/Certificates';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -127,10 +129,26 @@ const App = () => (
                 }
               />
               <Route
+                path="/courses/:courseId"
+                element={
+                  <ProtectedRoute>
+                    <CourseDetail />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
                 path="/interview-prep"
                 element={
                   <ProtectedRoute>
                     <InterviewPrep />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/certificates"
+                element={
+                  <ProtectedRoute>
+                    <Certificates />
                   </ProtectedRoute>
                 }
               />

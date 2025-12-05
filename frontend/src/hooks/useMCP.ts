@@ -384,6 +384,22 @@ export function useBlockchainSubmit() {
         throw new Error('Empty blockchain result received');
       }
       
+      // If result contains ipfsUrl but success=false, it means manual submission is needed
+      // Return the result so the modal can handle manual submission
+      if (!result.success && (result as any).ipfsUrl) {
+        console.log('[useBlockchain] Manual submission required (ipfsUrl present), returning result');
+        setData(result);
+        return result;
+      }
+      
+      // If manualSubmit flag is explicitly set, return result
+      if ((result as any).manualSubmit) {
+        console.log('[useBlockchain] Manual submission flagged, returning result');
+        setData(result);
+        return result;
+      }
+      
+      // Only throw error if it's a real failure (not manual submission)
       if (!result.success) {
         throw new Error(result.message || 'Blockchain submission failed');
       }

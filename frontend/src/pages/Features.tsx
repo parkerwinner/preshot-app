@@ -23,7 +23,7 @@ const Features = () => {
   const mainFeatures = [
     {
       icon: Brain,
-      title: "AI-Powered Diagnostic Assessment",
+      title: "AI Powered Diagnostic Assessment",
       description:
         "Take our comprehensive diagnostic test that evaluates your readiness across multiple dimensions including leadership, systems thinking, and global citizenship.",
       benefits: [
@@ -36,7 +36,7 @@ const Features = () => {
     },
     {
       icon: BookOpen,
-      title: "Mindset Micro-Courses",
+      title: "Mindset Micro Courses",
       description:
         "Access our curated library of interactive courses designed specifically for fellowship and scholarship preparation.",
       benefits: [
@@ -174,7 +174,7 @@ const Features = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen mt-20">
       <Navigation />
       <div className="container mx-auto px-4 mt-16 py-20">
         {/* Hero Section */}
@@ -183,9 +183,8 @@ const Features = () => {
             Everything You Need to Succeed
           </h1>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-            Preshot combines cutting-edge AI technology with expert human
-            guidance to give you the competitive edge in fellowship and
-            scholarship applications.
+            Preshot uses AI technology with expert human guidance to give you
+            the competitive edge in fellowship and scholarship applications.
           </p>
         </div>
 

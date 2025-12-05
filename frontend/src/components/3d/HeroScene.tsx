@@ -162,6 +162,18 @@ export default function HeroScene() {
           antialias: true,
           alpha: true,
           powerPreference: 'high-performance',
+          failIfMajorPerformanceCaveat: false,
+        }}
+        onCreated={({ gl }) => {
+          // Handle context loss gracefully
+          gl.domElement.addEventListener('webglcontextlost', (event) => {
+            event.preventDefault();
+            console.warn('WebGL context lost. Will attempt to restore...');
+          });
+          
+          gl.domElement.addEventListener('webglcontextrestored', () => {
+            console.log('WebGL context restored successfully');
+          });
         }}
         style={{ background: 'transparent' }}
       >

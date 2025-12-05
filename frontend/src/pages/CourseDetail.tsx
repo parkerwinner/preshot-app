@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { LessonViewer } from "@/components/courses/LessonViewer";
 import { QuizComponent } from "@/components/courses/QuizComponent";
+import { MintNFTModal } from "@/components/courses/MintNFTModal";
 import {
   fetchCourseWithModules,
   fetchModuleWithQuiz,
@@ -34,6 +35,7 @@ export default function CourseDetail() {
   const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>([]);
   const [loading, setLoading] = useState(true);
   const [completingModule, setCompletingModule] = useState(false);
+  const [showMintModal, setShowMintModal] = useState(false);
 
   useEffect(() => {
     if (courseId) {
@@ -108,6 +110,17 @@ export default function CourseDetail() {
 
     // Mark module as complete after passing quiz
     await handleCompleteLesson();
+
+    // Check if all modules are now complete
+    checkCourseCompletion();
+  };
+
+  const checkCourseCompletion = () => {
+    const allComplete = modules.every((m) => m.progress?.is_completed);
+    if (allComplete && modules.length > 0) {
+      // Show NFT minting modal when course is 100% complete
+      setShowMintModal(true);
+    }
   };
 
   if (loading) {
@@ -191,7 +204,7 @@ export default function CourseDetail() {
           </CardContent>
         </Card>
 
-        {/* HACKATHON BYPASS - Demo Only */}
+        {/* BYPASS - Demo Only */}
         {course.is_demo && progressPercentage < 100 && (
           <Card className="border-2 border-yellow-400 bg-yellow-50/50">
             <CardContent className="p-6">
@@ -201,30 +214,20 @@ export default function CourseDetail() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-yellow-900 mb-2">
-                    🎓 Hackathon Demo Mode
+                    🎓 Demo Mode
                   </h3>
                   <p className="text-sm text-yellow-800 mb-4">
-                    For demonstration purposes, you can skip directly to NFT
-                    minting.{" "}
+                    For demonstration purposes, taking course is skiped,
+                    directly to NFT minting.
                     <strong className="font-semibold">
-                      This bypass will be removed after the hackathon
+                      This bypass will be removed soon
                     </strong>
                     . Production users will need to complete all modules.
                   </p>
                   <Button
-                    onClick={async () => {
-                      try {
-                        toast.loading("Bypassing to certificate...");
-                        // Mark course as 100% complete (demo only)
-                        // This would call your backend to mint NFT
-                        await new Promise((resolve) => setTimeout(resolve, 2000));
-                        toast.success(
-                          "Demo NFT minting initiated! Check your wallet soon."
-                        );
-                        navigate("/certificates");
-                      } catch (error) {
-                        toast.error("Bypass failed");
-                      }
+                    onClick={() => {
+                      toast.dismiss();
+                      setShowMintModal(true);
                     }}
                     variant="outline"
                     className="border-yellow-600 text-yellow-700 hover:bg-yellow-100"
@@ -338,6 +341,18 @@ export default function CourseDetail() {
             )}
           </div>
         </div>
+
+        {/* NFT Minting Modal */}
+        <MintNFTModal
+          open={showMintModal}
+          onOpenChange={setShowMintModal}
+          courseId={course.id}
+          courseTitle={course.title}
+          onSuccess={() => {
+            toast.success("NFT minted! View it in your wallet.");
+            navigate("/certificates");
+          }}
+        />
       </div>
     </DashboardLayout>
   );

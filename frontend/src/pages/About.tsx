@@ -6,14 +6,14 @@ import { Target, Users, Globe, Award, Heart, Lightbulb } from "lucide-react";
 
 const About = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen mt-20">
       <Navigation />
       <div className="container mx-auto px-4 mt-20 py-20">
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-6">About Preshot</h1>
           <p className="text-xl max-w-3xl mx-auto text-gray-400">
-            Africa's first AI-powered platform for fellowship, scholarship, and
+            Global AI powered platform for fellowship, scholarship, and
             accelerator preparation
           </p>
         </div>
@@ -32,8 +32,8 @@ const About = () => {
             <CardContent>
               <p className="text-gray-400 leading-relaxed">
                 To democratize access to global opportunities by providing
-                African youth with world-class preparation tools, mentorship,
-                and AI-powered guidance for prestigious fellowships,
+                Talented youths with world class preparation tools, mentorship,
+                and AI powered guidance for prestigious fellowships,
                 scholarships, and accelerator programs.
               </p>
             </CardContent>
@@ -50,7 +50,7 @@ const About = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-400 leading-relaxed">
-                A future where every talented African youth has equal access to
+                A future where every talented youth has equal access to
                 transformative global opportunities, empowering them to become
                 leaders who drive positive change across the continent and
                 beyond.
@@ -68,7 +68,7 @@ const About = () => {
                 <div className="p-3 rounded-lg bg-green-100 w-fit mb-3">
                   <Lightbulb className="h-6 w-6 text-green-600" />
                 </div>
-                <CardTitle>AI-Powered Assessment</CardTitle>
+                <CardTitle>AI Powered Assessment</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
@@ -124,10 +124,10 @@ const About = () => {
           </CardHeader>
           <CardContent className="space-y-4 text-gray-400 leading-relaxed">
             <p>
-              Preshot was born from a simple observation: talented African youth
-              often miss out on life-changing opportunities not due to lack of
-              merit, but due to lack of access to proper preparation resources
-              and guidance.
+              Preshot was born from a simple observation: talented youths often
+              miss out on life changing opportunities not due to lack of merit,
+              but due to lack of access to proper preparation resources and
+              guidance.
             </p>
             <p>
               Our founders, themselves beneficiaries of prestigious fellowships,
@@ -137,11 +137,11 @@ const About = () => {
               preparation that could make the difference.
             </p>
             <p>
-              Today, Preshot combines cutting-edge AI technology with human
-              expertise to level the playing field. We're building a community
-              where every African youth can access world-class preparation
-              tools, connect with mentors who've walked the path, and unlock
-              their full potential.
+              Today, Preshot combines AI technology with human expertise to
+              level the playing field. We're building a community where every
+              African youth can access world-class preparation tools, connect
+              with mentors who've walked the path, and unlock their full
+              potential.
             </p>
           </CardContent>
         </Card>
@@ -151,7 +151,7 @@ const About = () => {
           <h2 className="text-3xl font-bold mb-10">Our Impact</h2>
           <div className="grid md:grid-cols-4 gap-6">
             <div className="p-6 bg-white rounded-lg shadow-lg">
-              <div className="text-4xl font-bold text-blue-600 mb-2">500+</div>
+              <div className="text-4xl font-bold text-blue-600 mb-2">50+</div>
               <p className="text-gray-700">Active Users</p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-lg">
@@ -165,7 +165,7 @@ const About = () => {
               <p className="text-gray-700">Expert Mentors</p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-lg">
-              <div className="text-4xl font-bold text-orange-600 mb-2">85%</div>
+              <div className="text-4xl font-bold text-orange-600 mb-2">95%</div>
               <p className="text-gray-700">Success Rate</p>
             </div>
           </div>
