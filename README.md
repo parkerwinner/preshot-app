@@ -1,7 +1,5 @@
 # Preshot — Readiness Engine
 
-![Preshot Banner](https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=300&fit=crop)
-
 **Preshot** is a Talent first AI powered platform designed to help users prepare for fellowships, scholarships, talent programs, interview and accelerators. Built with Nullshot MCP, Preshot provides comprehensive diagnostic assessments, program matching, AI powered coaching, and mindset development resources.
 
 ## 🌟 Overview
@@ -29,20 +27,23 @@ Preshot addresses the challenge of Talents and students navigating the complex l
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <YOUR_GIT_URL>
    cd preshot-app
    ```
 
 2. **Install frontend dependencies**
+
    ```bash
    cd frontend
    npm install
    ```
 
 3. **Set up environment variables**
-   
+
    Create a `.env` file in the `frontend` directory:
+
    ```env
    VITE_SUPABASE_URL=your_supabase_url_here
    VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
@@ -50,12 +51,13 @@ Preshot addresses the challenge of Talents and students navigating the complex l
    ```
 
 4. **Start the development server**
+
    ```bash
    npm run dev
    ```
 
 5. **Open your browser**
-   
+
    Navigate to `http://localhost:8081` (or the port shown in terminal)
 
 ## 🏗️ Project Structure
@@ -121,28 +123,29 @@ preshot-app/
 1. **Create a Supabase project** at [supabase.com](https://supabase.com)
 
 2. **Create preshotcourses tables** (optional, for storing user data)
+
    ```sql
    -- Example: User courses table
    CREATE TABLE IF NOT EXISTS preshotcourses (
-  id TEXT PRIMARY KEY,  -- Use text ID like 'global-leadership-foundations'
-  title TEXT NOT NULL,
-  description TEXT NOT NULL,
-  category TEXT NOT NULL,  -- 'leadership', 'systems-thinking', etc.
-  icon TEXT DEFAULT 'BookOpen',  -- Lucide icon name
-  color TEXT DEFAULT 'blue',  -- Tailwind color name
-  duration_minutes INTEGER DEFAULT 30,
-  order_index INTEGER DEFAULT 0,
-  is_locked BOOLEAN DEFAULT false,
-  is_demo BOOLEAN DEFAULT false,  -- Flag for demo courses with bypass
-  content JSONB,  -- Detailed lesson content
-  requirements TEXT[],  -- Prerequisites
-  learning_objectives TEXT[],
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
+   id TEXT PRIMARY KEY,  -- Use text ID like 'global-leadership-foundations'
+   title TEXT NOT NULL,
+   description TEXT NOT NULL,
+   category TEXT NOT NULL,  -- 'leadership', 'systems-thinking', etc.
+   icon TEXT DEFAULT 'BookOpen',  -- Lucide icon name
+   color TEXT DEFAULT 'blue',  -- Tailwind color name
+   duration_minutes INTEGER DEFAULT 30,
+   order_index INTEGER DEFAULT 0,
+   is_locked BOOLEAN DEFAULT false,
+   is_demo BOOLEAN DEFAULT false,  -- Flag for demo courses with bypass
+   content JSONB,  -- Detailed lesson content
+   requirements TEXT[],  -- Prerequisites
+   learning_objectives TEXT[],
+   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+   updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+   );
    ```
 
-4. **Update environment variables**
+3. **Update environment variables**
    - Copy your Supabase URL and anon key to `.env`
 
 ### Thirdweb Configuration
@@ -160,6 +163,7 @@ preshot-app/
 The MCP (Model Context Protocol) server provides AI-powered coaching and program intelligence:
 
 1. **Navigate to the MCP server directory**
+
    ```bash
    cd agent/preshot-mcp-server
    npm install
@@ -173,6 +177,7 @@ The MCP (Model Context Protocol) server provides AI-powered coaching and program
    ```
 
 The MCP server provides:
+
 - AI-powered coaching feedback
 - Program matching intelligence
 - Interview preparation guidance
@@ -181,6 +186,7 @@ The MCP server provides:
 ## 📱 Features & User Flow
 
 ### 1. Authentication
+
 - **Web3 Wallet Connection** via Thirdweb
 - Support for multiple wallet providers (MetaMask, Coinbase Wallet, WalletConnect, etc.)
 - Automatic redirect to dashboard upon connection
@@ -188,6 +194,7 @@ The MCP server provides:
 - Secure wallet-based authentication on Base network
 
 ### 2. Diagnostic Assessment
+
 - Multi-step form collecting:
   - Career and education goals
   - Background and experience
@@ -197,30 +204,35 @@ The MCP server provides:
 - Personalized readiness score
 
 ### 3. Program Library
+
 - Curated database of opportunities
 - Advanced filtering (type, region, deadline)
 - Program matching based on user profile
 - Detailed eligibility requirements
 
 ### 4. AI Coach (Placeholder)
+
 - Essay structure analysis
 - Clarity and mindset feedback
 - Highlighted issues with suggestions
 - Iterative improvement tracking
 
 ### 5. Mindset Courses (Placeholder)
+
 - Leadership fundamentals
 - Systems thinking
 - Global citizenship
 - Interactive assessments
 
 ### 6. Mentor Network (Placeholder)
+
 - Mentor profiles and matching
 - Direct messaging
 - Session scheduling
 - Progress reviews
 
 ### 7. Analytics Dashboard (Placeholder)
+
 - Readiness score trends
 - Skill gap analysis
 - Course completion metrics
@@ -231,12 +243,14 @@ The MCP server provides:
 The app uses a custom design system built with Tailwind CSS:
 
 ### Color Palette
+
 - **Primary**: Blue (#3B82F6) - Main brand color
 - **Accent**: Green (#10B981) - Success states
 - **Warning**: Amber (#F59E0B) - Warnings and alerts
 - **Muted**: Gray tones for secondary content
 
 ### Components
+
 - Built with shadcn/ui component library
 - Fully customizable and accessible
 - Dark mode support included
@@ -247,11 +261,13 @@ The app uses a custom design system built with Tailwind CSS:
 ### Deploy to Vercel
 
 1. **Install Vercel CLI**
+
    ```bash
    npm i -g vercel
    ```
 
 2. **Deploy**
+
    ```bash
    vercel
    ```
@@ -261,6 +277,7 @@ The app uses a custom design system built with Tailwind CSS:
 ### Deploy to Netlify
 
 1. **Build the app**
+
    ```bash
    npm run build
    ```
@@ -303,6 +320,7 @@ Contributions are welcome! Please follow these steps:
 ## 📝 Development Notes
 
 ### Current Status
+
 - ✅ Authentication system (login/signup)
 - ✅ Dashboard with readiness overview
 - ✅ Diagnostic assessment flow
@@ -314,6 +332,7 @@ Contributions are welcome! Please follow these steps:
 - ⏳ Analytics Dashboard (placeholder)
 
 ### Next Steps
+
 1. Implement backend API for diagnostic assessment processing
 2. Integrate OpenAI for AI coaching feedback
 3. Build out mindset course content and interactive components
@@ -323,6 +342,7 @@ Contributions are welcome! Please follow these steps:
 7. Add email notifications for deadlines and updates
 
 ### Known Issues
+
 - Some advanced AI features require MCP server configuration
 - Course content needs to be populated in Supabase
 - Interview prep features are in development
@@ -330,6 +350,7 @@ Contributions are welcome! Please follow these steps:
 ## 📞 Support
 
 For questions or support:
+
 - **Email**: hi@xavalabs.com
 - **Discord**: Join Preshot Network community
 

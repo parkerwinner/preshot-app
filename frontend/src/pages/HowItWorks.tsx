@@ -15,7 +15,7 @@ import {
 
 const HowItWorks = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen mt-20">
       <Navigation />
       <div className="container mx-auto px-4 mt-20 py-20">
         {/* Hero Section */}
@@ -47,10 +47,8 @@ const HowItWorks = () => {
             <div className="md:w-2/3">
               <h3 className="text-2xl font-bold mb-3">Create Your Account</h3>
               <p className="text-gray-400 text-lg leading-relaxed">
-                Sign up for free and complete your profile. Tell us about your
-                background, interests, and aspirations. This helps us
-                personalize your experience and match you with the right
-                opportunities.
+                Sign in via wallet connect. Ensure you are connected to the
+                account you will love to receive Nft after taking a course.
               </p>
             </div>
           </div>
